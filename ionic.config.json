@@ -1,5 +1,7 @@
 {
   "name": "NextflowMyLocation",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }
