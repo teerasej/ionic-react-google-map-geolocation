@@ -1,5 +1,6 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon } from '@ionic/react';
 import React from 'react';
+import { locate } from "ionicons/icons";
 import { Plugins } from '@capacitor/core';
 const { Geolocation } = Plugins;
 
@@ -8,18 +9,16 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Ionic Blank</IonTitle>
+          <IonTitle>My Location</IonTitle>
+          <IonButtons slot="end">
+            <IonButton>
+              <IonIcon icon={locate} slot="icon-only"></IonIcon>
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        The world is your oyster.
-        <p>
-          If you get lost, the{' '}
-          <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/">
-            docs
-          </a>{' '}
-          will be your guide.
-        </p>
+        
       </IonContent>
     </IonPage>
   );
