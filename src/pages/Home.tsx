@@ -22,7 +22,14 @@ const Home: React.FC = () => {
     console.log('Current', coordinates);
     setPositionReady(true);
     setCurrentPosition({lat: coordinates.coords.latitude, lng: coordinates.coords.longitude})
+  }
 
+  const onMapLoad = (map:any,maps:any) => {
+    let marker = new maps.Marker({
+      position: currentPosition,
+      map,
+      title: 'me'
+  });
   }
 
   let googleMap;
@@ -34,6 +41,8 @@ const Home: React.FC = () => {
             bootstrapURLKeys={{ key: 'AIzaSyBDqlW1EIlePcA48oLVV_kYQJXm9dQ75uw' }}
             defaultCenter={currentPosition}
             defaultZoom={currentZoom}
+            yesIWantToUseGoogleMapApiInternals
+            onGoogleApiLoaded={({ map, maps }) => onMapLoad(map, maps)}
           >
           </GoogleMapReact>
     )
@@ -55,7 +64,7 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <div style={{ height: '100vh', width: '100%' }}>
+        <div style={{ height: '94vh', width: '100%' }}>
           {googleMap}
         </div>
         <IonLoading
