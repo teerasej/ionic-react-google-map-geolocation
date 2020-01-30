@@ -1,51 +1,12 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 import { locate } from "ionicons/icons";
-import { Plugins } from '@capacitor/core';
-import GoogleMapReact from 'google-map-react';
-const { Geolocation } = Plugins;
-
 
 
 const Home: React.FC = () => {
 
-  const currentZoom = 15;
-  const [positionReady, setPositionReady] = useState(false);
-  const [currentPosition, setCurrentPosition] = useState({ lat: 0, lng: 0 });
-  const [showLoading, setshowLoading] = useState(false);
-
   const startGetGPS = async () => {
-    console.log('getting gps');
-    setshowLoading(true);
-    const coordinates = await Geolocation.getCurrentPosition();
-    setshowLoading(false);
-    console.log('Current', coordinates);
-    setPositionReady(true);
-    setCurrentPosition({ lat: coordinates.coords.latitude, lng: coordinates.coords.longitude })
-  }
-
-  const onMapLoad = (map: any, maps: any) => {
-    let marker = new maps.Marker({
-      position: currentPosition,
-      map,
-      title: 'me'
-    });
-  }
-
-  let googleMap;
-
-  if (positionReady) {
-    console.log('Data is ready');
-    googleMap = (
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyBDqlW1EIlePcA48oLVV_kYQJXm9dQ75uw' }}
-        defaultCenter={currentPosition}
-        defaultZoom={currentZoom}
-        yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => onMapLoad(map, maps)}
-      >
-      </GoogleMapReact>
-    )
+  
   }
 
 
@@ -64,14 +25,7 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <div style={{ height: '94vh', width: '100%' }}>
-          {googleMap}
-        </div>
-        <IonLoading
-          isOpen={showLoading}
-          message={'Getting GPS...'}
-          duration={5000}
-        />
+        
       </IonContent>
     </IonPage>
   );
