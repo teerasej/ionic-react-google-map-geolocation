@@ -21,30 +21,30 @@ const Home: React.FC = () => {
     setshowLoading(false);
     console.log('Current', coordinates);
     setPositionReady(true);
-    setCurrentPosition({lat: coordinates.coords.latitude, lng: coordinates.coords.longitude})
+    setCurrentPosition({ lat: coordinates.coords.latitude, lng: coordinates.coords.longitude })
   }
 
-  const onMapLoad = (map:any,maps:any) => {
+  const onMapLoad = (map: any, maps: any) => {
     let marker = new maps.Marker({
       position: currentPosition,
       map,
       title: 'me'
-  });
+    });
   }
 
   let googleMap;
-  
-  if(positionReady){
+
+  if (positionReady) {
     console.log('Data is ready');
     googleMap = (
       <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyBDqlW1EIlePcA48oLVV_kYQJXm9dQ75uw' }}
-            defaultCenter={currentPosition}
-            defaultZoom={currentZoom}
-            yesIWantToUseGoogleMapApiInternals
-            onGoogleApiLoaded={({ map, maps }) => onMapLoad(map, maps)}
-          >
-          </GoogleMapReact>
+        bootstrapURLKeys={{ key: 'AIzaSyBDqlW1EIlePcA48oLVV_kYQJXm9dQ75uw' }}
+        defaultCenter={currentPosition}
+        defaultZoom={currentZoom}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => onMapLoad(map, maps)}
+      >
+      </GoogleMapReact>
     )
   }
 
