@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">NextflowMyLocation</string>
+    <string name="title_activity_main">NextflowMyLocation</string>
+    <string name="package_name">th.in.nextflow.ionic.react.training.geomap</string>
+    <string name="custom_url_scheme">th.in.nextflow.ionic.react.training.geomap</string>
+</resources>
