@@ -1,8 +1,10 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 import { locate } from "ionicons/icons";
-
+import GoogleMapReact from 'google-map-react';
 import { Plugins } from "@capacitor/core";
+
+
 const { Geolocation } = Plugins;
 
 const Home: React.FC = () => {
@@ -25,6 +27,21 @@ const Home: React.FC = () => {
     console.log('Current: ', coordinates);
   }
 
+  let watch1;
+
+  let startWatchGPS = () => {
+    console.log('Watching geolocation...');
+    watch1 = Geolocation.watchPosition({}, (position,error) => {
+        console.log('new position: ', position);
+        setPositionReady(true);
+        setCurrentPosition({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          acc: position.coords.accuracy
+        })
+    });
+  }
+
   let positionTextJSX;
 
   if(positionReady == true) {
@@ -41,7 +58,7 @@ const Home: React.FC = () => {
           <IonTitle>My Location</IonTitle>
           <IonButtons slot="end">
             <IonButton
-              onClick={startGetGPS}
+              onClick={startWatchGPS}
             >
               <IonIcon icon={locate} slot="icon-only"></IonIcon>
             </IonButton>
